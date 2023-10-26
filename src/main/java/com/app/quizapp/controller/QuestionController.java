@@ -25,18 +25,17 @@ public class QuestionController {
 
     @GetMapping("allQuestions")
     public ResponseEntity<List<Question>> getAllQuestion() {
-        return questionService.getAllQuestions();
+        return ResponseEntity.ok(questionService.getAllQuestions());
     }
 
     @GetMapping("category")
     public ResponseEntity<List<Question>> getQuestionsByCategory(@RequestBody QuestionDTO questionDTO) {
-        String category = questionDTO.getCategory();
-        return questionService.getQuestionsByCategory(category);
+        return ResponseEntity.ok(questionService.getQuestionsByCategory(questionDTO));
     }
 
     @PostMapping("add")
     public ResponseEntity<String> addQuestion(@RequestBody Question question) {
-        return questionService.addQuestion(question);
+        return ResponseEntity.ok(questionService.addQuestion(question));
     }
 
     @DeleteMapping("delete/{id}")
