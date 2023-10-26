@@ -1,6 +1,5 @@
 package com.app.quizapp.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,22 +25,17 @@ public class QuizController {
 
     @PostMapping("create")
     public ResponseEntity<String> createQuiz(@RequestBody QuestionDTO questionDTO) {
-        String category = questionDTO.getCategory();
-        int numberOfQuestions = questionDTO.getNumberOfQuestions();
-        String title = questionDTO.getTitle();
-        return quizService.createQuiz(category, numberOfQuestions, title);
+        return ResponseEntity.ok(quizService.createQuiz(questionDTO));
     }
 
     @GetMapping("getQuiz")
     public ResponseEntity<List<QuestionWrapper>> getQuiz(@RequestBody QuizDTO dto) {
-        int id = dto.getId();
-        return quizService.getQuiz(id);
+        return ResponseEntity.ok(quizService.getQuiz(dto));
     }
 
     @PostMapping("submit")
     public ResponseEntity<Integer> submitQuiz(@RequestBody QuizDTO dto) {
-        int id = dto.getId();
-        List<Response> response = dto.getResponse();
-        return quizService.calculateResult(id, response);
+
+        return ResponseEntity.ok(quizService.calculateResult(dto));
     }
 }
