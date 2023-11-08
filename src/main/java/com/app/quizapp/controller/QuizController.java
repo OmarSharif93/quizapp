@@ -2,7 +2,6 @@ package com.app.quizapp.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,15 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.quizapp.dto.QuestionDTO;
 import com.app.quizapp.dto.QuizDTO;
 import com.app.quizapp.model.QuestionWrapper;
-import com.app.quizapp.model.Response;
-import com.app.quizapp.service.QuizService;
+import com.app.quizapp.serviceimpl.QuizServiceImpl;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("quiz")
+@RequiredArgsConstructor
 public class QuizController {
 
-    @Autowired
-    QuizService quizService;
+    private final QuizServiceImpl quizService;
 
     @PostMapping("create")
     public ResponseEntity<String> createQuiz(@RequestBody QuestionDTO questionDTO) {
