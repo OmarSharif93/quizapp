@@ -2,7 +2,6 @@ package com.app.quizapp.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.quizapp.dto.QuestionDTO;
 import com.app.quizapp.model.Question;
-import com.app.quizapp.service.QuestionService;
+import com.app.quizapp.serviceimpl.QuestionServiceImpl;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("question")
+@RequiredArgsConstructor
 public class QuestionController {
 
-    @Autowired
-    QuestionService questionService;
+    private final QuestionServiceImpl questionService;
 
     @GetMapping("allQuestions")
     public ResponseEntity<List<Question>> getAllQuestion() {
